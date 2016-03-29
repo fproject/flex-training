@@ -1,0 +1,5 @@
+Thiết kế lại ứng dụng này theo hướng sau:
+- Thêm 2 nút bấm "Add" và "Save". Ban đầu nút "Save" bị disabled
+- Khi nhấn và nút "Add" thì tạo ra một dòng trắng ở dưới cùng để cho người dùng nhập dữ liệu, đồng thời chuyển trạng thái nút Save sang enabled.
+- Khi nhấn Save thì thực hiện lưu dữ liệu lên server, đồng thời chuyển trạng thái nút này về lại disabled
+- Khi việc save lên server thành công, trong listener của ResultEvent thực hiện truy vấn lại toàn bộ dữ liệu từ server và hiển thị lên grid.

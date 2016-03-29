@@ -1,0 +1,4 @@
+Thiết kế lại ứng dụng này theo hướng sau:
+- Hiển thị tất cả các trường còn lại của employee lên EmployeeItemRenderer
+- Bố cục của mỗi renderer phải đẹp và theo phương pháp thiết kế "Card Design" của Facebook, 
+tức là mỗi employee hiển thị trên một thẻ (card) giống như một item trên Facebook Home. Càng giống được như Facebook càng đạt yêu cầu.

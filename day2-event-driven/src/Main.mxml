@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   minWidth="955" minHeight="600"
+			   xmlns:local="*" xmlns:views="views.*">
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import events.EmployeeEvent;
+			
+			protected function employeeView_employeeViewSubmittedHandler(event:EmployeeEvent):void
+			{
+				outputTextArea.appendText("\nSubmitted employee: " + event.employee.name);
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		
+	</fx:Declarations>
+	
+	<views:EmployeeView id="employeeView" employeeViewSubmitted="employeeView_employeeViewSubmittedHandler(event)"/>
+	
+	<s:TextArea id="outputTextArea" width="100%" text="This is your output"/>
+</s:Application>

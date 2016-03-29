@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Form xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300">
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import my.classes.models.Employee;
+			
+			[Bindable]
+			public var model:Employee;
+			
+			protected function checkButton_clickHandler(event:MouseEvent):void
+			{
+				//model is a strong typed object
+				checkValueText.appendText("Current value of ID:" + model.id);
+				checkValueText.appendText("\nCurrent value of Name:" + model.name);
+				checkValueText.appendText("\Current value of Birthday:" + model.birthday);
+				//Literal constant
+				"abfdsfdsf";'Abc';
+				123//decimal int
+				-123//decimal int
+				0xFF;//hexa uint
+				12.24//Number
+				
+				//untypedObject is a weak typed object or dynamic object
+				var untypedObject:Object = {name:"ABC", type:"MyObject",child:{name:"ChildName", type:"ChildObject"}};
+				
+				checkValueText.appendText("\nUntyped Object's Name = " + untypedObject.name);
+				checkValueText.appendText("\nUntyped Object's Type = " + untypedObject.type);
+				untypedObject.field1 = "Field 1";
+				untypedObject["field3"] = "Field 3";
+				untypedObject.child.field2 = "Field 2";
+				
+				checkValueText.appendText("\nField9:" + untypedObject["field9"]);//undefined
+				
+				checkValueText.appendText("\nChild Object's Name = " + untypedObject.child.name);
+				checkValueText.appendText("\nChild Object's Type = " + untypedObject.child.type);
+				
+				delete untypedObject["child"];
+				var dic:Dictionary=new Dictionary;
+				dic[untypedObject] = model;
+				
+				
+				var untypedObject2:* = {name:"nguyen", birthDay:new Date()};
+			}
+			
+			
+			public function mySpecialMethod(troidep:Boolean):*{
+				if(troidep)
+					return 10000000;
+			}
+			
+		]]>
+	</fx:Script>
+	<s:FormHeading label="The Employee Details"/>
+	<s:FormItem label="ID:">
+		<s:TextInput id="idTextInput" text="{model.birthday}"/>
+	</s:FormItem>
+	<s:FormItem label="Name:">
+		<s:TextInput id="nameTextInput" text="{model.name}"/>
+	</s:FormItem>
+	<s:FormItem label="Birthday:">
+		<mx:DateField id="birthDayDateField" selectedDate="{model.birthday}"/>
+	</s:FormItem>
+	<s:Button id="checkButton" label="Check" click="checkButton_clickHandler(event)"/>
+	<s:TextArea id="checkValueText"/>
+</s:Form>

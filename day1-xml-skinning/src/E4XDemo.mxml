@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			protected function demoButton_clickHandler(event:MouseEvent):void
+			{
+				// This is E4X XML processing by ActionScript 3.0
+				ouputPanel.appendText("The name of that employee:" + employee.Name);
+				
+				//This is XQuery demo
+				ouputPanel.appendText("\nFind peter pan:");
+				var result:XMLList = employeeList.(Name=="Peter Pan");
+				ouputPanel.appendText("\nThe name of matched record:" + result[0].Name);
+				result = employeeList.(@visible=="false");
+				ouputPanel.appendText("\nThe name of invisible record:" + result[0].Name);
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<fx:XML id="employee">
+			<Employee>
+				<Name>My Name</Name>
+				<BirthDay>2/12/2012</BirthDay>
+				<Age>10</Age>
+			</Employee>
+		</fx:XML>
+		<fx:XMLList id="employeeList">
+			<Employee visible="true">
+				<Name>My Name</Name>
+				<BirthDay>2/12/2012</BirthDay>
+				<Age>10</Age>
+			</Employee>
+			<Employee visible="false">
+				<Name>Peter Pan</Name>
+				<BirthDay>2/12/2014</BirthDay>
+				<Age>1000</Age>
+			</Employee>
+		</fx:XMLList>
+	</fx:Declarations>
+	<s:Button id="demoButton" label="Demo XML" click="demoButton_clickHandler(event)"/>
+	<s:TextArea id="ouputPanel" width="100%" height="500"/>
+</s:Application>

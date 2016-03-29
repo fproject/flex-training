@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   minWidth="955" minHeight="600"
+			   xmlns:local="*" xmlns:views="views.*">
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			
+			import models.Department;
+			import models.Employee;
+			
+			[Bindable]
+			public var employees:ArrayCollection = new ArrayCollection;
+			
+			import events.EmployeeEvent;
+			
+			protected function employeeView_employeeViewSubmittedHandler(event:EmployeeEvent):void
+			{
+				employees.addItem(event.employee);
+			}
+			
+			protected function getEmployeeDisplayText(emp:Employee):String
+			{
+				return "This is " + emp.name;
+			}
+			
+			protected function iterateAllFieldsButton_clickHandler(event:MouseEvent):void
+			{
+				var s:String="";
+				
+				//var e:Object = {name1:"My Name", field1:"Field 1 value"};
+				var e:Employee = new Employee;
+				
+				for (var field:* in e)
+				{
+					s += field + ",";
+				}
+				
+				Alert.show(s);
+			}
+			
+			protected function getEmployeeDepartmentText(e:Employee, column:GridColumn):String
+			{
+				return "This is " + Department(e[column.dataField]).name;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		
+	</fx:Declarations>
+	
+	<views:EmployeeView id="employeeView" employeeViewSubmitted="employeeView_employeeViewSubmittedHandler(event)"/>
+	
+	<s:List id="employeeListView" dataProvider="{employees}" labelFunction="{getEmployeeDisplayText}"
+			width="100%" height="500"/>
+	<s:Button id="iterateAllFieldsButton" click="iterateAllFieldsButton_clickHandler(event)"
+			  label="Show Employee Fields"/>
+	<s:DataGrid id="employeeGrid" width="100%" height="100%"
+				dataProvider="{employees}">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn dataField="name" headerText="Employee Name"/>
+				<s:GridColumn dataField="gender" headerText="Gender"/>
+				<s:GridColumn dataField="department" headerText="Department" labelFunction="{getEmployeeDepartmentText}"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+</s:Application>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Form xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300">
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import my.classes.models.Employee;
+			
+			[Bindable]
+			public var model:Employee;
+		]]>
+	</fx:Script>
+	<s:FormHeading label="The Employee Details"/>
+	<s:FormItem label="ID:">
+		<s:TextInput id="idTextInput" text="{model.id}"/>
+	</s:FormItem>
+	<s:FormItem label="Name:">
+		<s:TextInput id="nameTextInput" text="{model.name}"/>
+	</s:FormItem>
+	<s:FormItem label="Birthday:">
+		<mx:DateField id="birthDayDateField" selectedDate="{model.birthday}"/>
+	</s:FormItem>
+</s:Form>

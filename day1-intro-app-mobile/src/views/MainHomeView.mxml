@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		title="HomeView">
+	<fx:Script>
+		<![CDATA[
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				helloWorldLabel.text = "Hello The World";
+				myButton.label = "The world Changed";
+			}
+		]]>
+	</fx:Script>
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<s:Button id="myButton" label="Hello World" click="button1_clickHandler(event)"/>
+	<s:Label id="helloWorldLabel"/>
+	<s:CheckBox id="myCheck" label="My Check Box"/>
+	<s:CalloutButton id="myCallout" label="My Callout Button">
+		<s:calloutLayout>
+			<s:VerticalLayout/>
+		</s:calloutLayout>
+		<s:Button label="Child Button"/>
+		<s:CheckBox label="Child Check Box"/>
+	</s:CalloutButton>
+</s:View>

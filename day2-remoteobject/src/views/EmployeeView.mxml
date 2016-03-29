@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Form xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300">
+	<fx:Script>
+		<![CDATA[
+			import spark.events.IndexChangeEvent;
+			
+			import events.EmployeeEvent;
+			
+			import models.Employee;
+			[Bindable]
+			public var model:Employee = new Employee;
+			
+			protected function btnBar_changeHandler(event:IndexChangeEvent):void
+			{
+				var e:EmployeeEvent = new EmployeeEvent(EmployeeEvent.EMPLOYEE_VIEW_SUBMITTED, this.model);
+				if(btnBar.selectedIndex == 0)
+					e.action = EmployeeEvent.ACTION_SAVE;//Do not use literal constants!
+				else
+					e.action = EmployeeEvent.ACTION_DELETE;
+				this.dispatchEvent(e);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Metadata>
+		[Event(name="employeeViewSubmitted", type="events.EmployeeEvent")]
+	</fx:Metadata>
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<s:FormHeading label="EMPLOYEE DETAILS"/>
+	<s:FormItem label="ID">
+		<s:TextInput id="idTextInput"
+					 text="@{model.id}"/>
+	</s:FormItem>
+	<s:FormItem label="Name">
+		<s:TextInput id="nameTextInput"
+					 text="@{model.name}"/>
+	</s:FormItem>
+	<s:FormItem label="Age">
+		<s:NumericStepper id="ageStepper" maximum="1000"
+						  value="@{model.age}"/>
+	</s:FormItem>
+	<s:FormItem label="Gender">
+		<s:NumericStepper id="genderStepper"
+						  value="@{model.gender}"/>
+	</s:FormItem>
+	<s:ButtonBar id="btnBar" change="btnBar_changeHandler(event)">
+		<s:ArrayCollection>
+			<fx:String>Save</fx:String>
+			<fx:String>Delete</fx:String>
+		</s:ArrayCollection>
+	</s:ButtonBar>
+</s:Form>

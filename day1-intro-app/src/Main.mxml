@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" 
+			   xmlns:views="my.classes.views.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import my.classes.models.Employee;
+			[Bindable]
+			protected var model:Employee = new Employee;
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				helloWorldLabel.text = "Hello The World";
+				model.name = "Peter Pan";
+				model.id = "007";
+				model.birthday = new Date(1996,1,19);
+			}
+			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				model.name = null;
+				model.id = null;
+				model.birthday = null;
+				
+			}
+			
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+				model.name = "New name";
+			}
+			
+		]]>
+	</fx:Script>
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<s:Button label="Show Employee Details" click="button1_clickHandler(event)"/>
+	<s:Button label="Clear" click="button2_clickHandler(event)"/>
+	<s:Button label="Set Name" click="button3_clickHandler(event)"/>
+	<s:Label id="helloWorldLabel"/>
+	<views:EmployeeDetail id="employeeDetail" model="{this.model}"/>
+</s:Application>

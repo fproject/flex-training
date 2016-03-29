@@ -1,0 +1,20 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+/* This is a TYPE SELECTOR demo */
+s|Button {
+	skinClass: ClassReference("MyButtonSkin");
+	textDecoration:none;
+}
+
+/* This is a demo for state-based CSS class*/
+s|Button:over {
+	textDecoration:underline;
+	color:#0000FF;
+}
+
+/* This is a CLASS SELECTOR demo */
+.myRadioButton {
+	color:#FF0000;
+}
